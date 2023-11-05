@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:warqkm/core/helpers/countries_helper.dart';
 import 'package:warqkm/core/helpers/router_helper.dart';
 import 'package:warqkm/core/themes/light/light_theme_data.dart';
 import 'package:warqkm/features/auth/presentation/pages/login_screen.dart';
@@ -8,8 +9,7 @@ import 'package:warqkm/translations/codegen_loader.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-
+  await Future.wait([EasyLocalization.ensureInitialized(), CountriesHelper().getCountries()]);
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('ar')],

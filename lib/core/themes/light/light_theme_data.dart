@@ -31,7 +31,7 @@ ThemeData get lightTheme => ThemeData(
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         contentPadding: EdgeInsets.all(16.asp),
-        fillColor: LightAppColors.textFieldFillColor.withOpacity(0.4),
+        fillColor: LightAppColors.textFieldFillColor,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10.asp),

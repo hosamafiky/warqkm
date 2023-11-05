@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     this.controller,
     this.obscureText = false,
+    this.isFilled = true,
     this.hintText,
     this.validator,
     this.suffix,
@@ -27,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Function(String?)? onChanged;
   final Function(String?)? onSaved;
-  final bool obscureText;
+  final bool obscureText, isFilled;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class CustomTextFormField extends StatelessWidget {
       textAlign: textAlign,
       decoration: InputDecoration(
         hintText: hintText,
+        filled: isFilled,
         suffixIcon: suffix,
         focusedBorder: focusedBorder,
       ),

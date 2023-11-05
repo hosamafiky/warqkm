@@ -167,6 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomDropdownButton(
                         value: schoolDegree.value,
                         values: schoolDegrees,
+                        itemView: (item) => Text(item),
                         hint: Text(LocaleKeys.auth_school_degree_hint.tr()),
                         icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey[400]),
                         onChanged: (degree) {
