@@ -17,7 +17,8 @@ class CountryDialCodePicker extends StatefulWidget {
 }
 
 class _CountryDialCodePickerState extends State<CountryDialCodePicker> {
-  Country? currentCountry = CountriesHelper().countries.firstWhere((element) => element.dialCode == '+966');
+  Country? currentCountry = CountriesHelper().countries.where((element) => element.dialCode == '+966').firstOrNull;
+
   @override
   Widget build(BuildContext context) {
     return CustomDropdownButton(
