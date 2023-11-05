@@ -29,7 +29,7 @@ class CodegenLoader extends AssetLoader{
     "email": "البريد الإلكتروني",
     "email_hint": "أدخل البريد الإلكتروني",
     "school_degree": "المرحلة الدراسية",
-    "school_degree_hint": "المرحلة الدراسية",
+    "school_degree_hint": "أدخل المرحلة الدراسية",
     "password_conf": "تأكيد كلمة المرور",
     "account_creation": "إنشاء حساب",
     "signup": "تسجيل جديد",

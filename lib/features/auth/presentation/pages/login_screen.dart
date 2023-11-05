@@ -6,6 +6,7 @@ import 'package:warqkm/features/auth/presentation/pages/forget_password_screen.d
 import 'package:warqkm/features/auth/presentation/pages/register_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
+import '../../../../core/shared_widgets/custom_text_button.dart';
 import '../../../../core/shared_widgets/custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -129,9 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       31.vsb,
                       Center(
-                        child: TextButton(
+                        child: CustomTextButton(
+                          LocaleKeys.auth_as_guest.tr(),
                           onPressed: () {},
-                          child: Text(LocaleKeys.auth_as_guest.tr()),
                         ),
                       ),
                       const Spacer(),

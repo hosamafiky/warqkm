@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:warqkm/core/extensions/res_size.dart';
+import 'package:warqkm/core/shared_widgets/custom_text_button.dart';
 import 'package:warqkm/core/shared_widgets/custom_text_form_field.dart';
 import 'package:warqkm/core/themes/light/light_colors.dart';
+import 'package:warqkm/features/auth/presentation/pages/reset_password_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
 class ActivationCodeScreen extends StatefulWidget {
@@ -16,6 +20,36 @@ class ActivationCodeScreen extends StatefulWidget {
 
 class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
   List<String> codeDigits = [];
+  late Timer timer;
+
+  ValueNotifier<Duration> remainingTime = ValueNotifier(const Duration(minutes: 2));
+
+  @override
+  void initState() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      final remaining = remainingTime.value.inSeconds - 1;
+      if (remaining >= 0) {
+        remainingTime.value = Duration(seconds: remaining);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهى الوقت')));
+        timer.cancel();
+      }
+    });
+    super.initState();
+  }
+
+  String formateTime(Duration duration) {
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,19 +123,64 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                           ),
                         ],
                       ),
+                      25.vsb,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                LocaleKeys.auth_no_code.tr(),
+                                style: Theme.of(context).textTheme.bodySmall!,
+                              ),
+                              CustomTextButton(
+                                LocaleKeys.auth_resend.tr(),
+                                decoration: TextDecoration.none,
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${LocaleKeys.auth_remaining_time.tr()} : ",
+                                  style: Theme.of(context).textTheme.bodySmall!,
+                                ),
+                                ValueListenableBuilder(
+                                  valueListenable: remainingTime,
+                                  builder: (context, time, child) {
+                                    return Text(
+                                      formateTime(time),
+                                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                                            height: 1.4,
+                                          ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                       31.vsb,
                       ElevatedButton(
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                codeDigits.reversed.join(),
-                                style: const TextStyle(color: Colors.white),
+                                codeDigits.reversed.join().length < 4 ? 'كود التفعيل غير صحيح' : codeDigits.reversed.join(),
+                                style: TextStyle(color: codeDigits.reversed.join().isEmpty ? Colors.redAccent : Colors.white),
                               ),
                             ),
                           );
+                          if (codeDigits.reversed.join().length < 4) {
+                            return;
+                          }
+                          Navigator.pushNamed(context, ResetPasswordScreen.routeName);
                         },
-                        child: Text(LocaleKeys.auth_send.tr()),
+                        child: Text(LocaleKeys.auth_enter.tr()),
                       ),
                     ],
                   ),

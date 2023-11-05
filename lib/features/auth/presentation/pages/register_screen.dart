@@ -4,8 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:warqkm/core/extensions/res_size.dart';
+import 'package:warqkm/features/auth/presentation/pages/code_activation_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
+import '../../../../core/shared_widgets/custom_dropdown_button.dart';
 import '../../../../core/shared_widgets/custom_text_form_field.dart';
 import '../../../../core/themes/light/light_colors.dart';
 
@@ -25,7 +27,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _passwordConfController = TextEditingController();
 
+  List<String> schoolDegrees = ['إبتدائي', 'إعدادي', 'ثانوي'];
+
   ValueNotifier<bool> isPasswordVisible = ValueNotifier(false);
+  ValueNotifier<String?> schoolDegree = ValueNotifier(null);
   ValueNotifier<File?> profileImage = ValueNotifier(null);
   ValueNotifier<bool> isConfPasswordVisible = ValueNotifier(false);
 
@@ -158,13 +163,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         LocaleKeys.auth_school_degree.tr(),
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      //TODO: implement Dropdown button
                       11.34.vsb,
-                      // CustomTextFormField(
-                      //   controller: _schoolDegController,
-                      //   keyboardType: TextInputType.,
-                      //   hintText: LocaleKeys.auth_email_hint.tr(),
-                      // ),
+                      CustomDropdownButton(
+                        value: schoolDegree.value,
+                        values: schoolDegrees,
+                        hint: Text(LocaleKeys.auth_school_degree_hint.tr()),
+                        icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey[400]),
+                        onChanged: (degree) {
+                          schoolDegree.value = degree;
+                        },
+                      ),
                       14.vsb,
                       Text(
                         LocaleKeys.auth_password.tr(),
@@ -211,9 +219,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                         },
                       ),
+                      16.vsb,
                       const Spacer(),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, ActivationCodeScreen.routeName);
+                        },
                         child: Text(LocaleKeys.auth_signup.tr()),
                       ),
                     ],

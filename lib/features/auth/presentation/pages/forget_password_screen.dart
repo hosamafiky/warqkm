@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:warqkm/core/extensions/res_size.dart';
 import 'package:warqkm/core/themes/light/light_colors.dart';
-import 'package:warqkm/features/auth/presentation/pages/code_activation_screen.dart';
+import 'package:warqkm/features/auth/presentation/pages/reset_password_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
 import '../../../../core/shared_widgets/custom_text_form_field.dart';
@@ -28,7 +28,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.auth_forgot_pass.tr()),
+        title: Text(LocaleKeys.auth_password_reset.tr()),
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (notification) {
@@ -94,7 +94,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       31.vsb,
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, ActivationCodeScreen.routeName);
+                          Navigator.pushNamed(context, ResetPasswordScreen.routeName);
                         },
                         child: Text(LocaleKeys.auth_send.tr()),
                       ),

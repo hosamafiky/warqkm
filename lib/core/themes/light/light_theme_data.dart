@@ -86,5 +86,11 @@ ThemeData get lightTheme => ThemeData(
           height: 24 / 12,
           fontWeight: FontWeight.w500,
         ),
+        displaySmall: TextStyle(
+          color: LightAppColors.primaryColor,
+          fontSize: 13.asp,
+          height: 24 / 12,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
