@@ -12,14 +12,16 @@ class CountriesHelper {
   List<Country> get countries => _countries;
   List<Country> _countries = [];
 
-  Future<void> getCountries() async {
+  Future<List<Country>> getCountries() async {
     try {
       String data = await rootBundle.loadString('assets/countries.json');
-      _countries = List<Country>.from(json.decode(data).map((e) => Country.fromJson(e)));
+      final jsonData = json.decode(data);
+      _countries = List<Country>.from(jsonData.where((e) => e['dial_code'] == '+966').map((e) => Country.fromJson(e)));
     } catch (e) {
-      print(e.toString());
       _countries = [];
     }
+
+    return _countries;
   }
 }
 
