@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:warqkm/core/extensions/res_size.dart';
-import 'package:warqkm/core/helpers/countries_helper.dart';
+import 'package:warqkm/core/shared_widgets/phone_number_widget.dart';
 import 'package:warqkm/core/themes/light/light_colors.dart';
 import 'package:warqkm/features/auth/presentation/pages/forget_password_screen.dart';
 import 'package:warqkm/features/auth/presentation/pages/register_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
-import '../../../../core/shared_widgets/custom_dropdown_button.dart';
 import '../../../../core/shared_widgets/custom_text_button.dart';
 import '../../../../core/shared_widgets/custom_text_form_field.dart';
 
@@ -67,46 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         11.34.vsb,
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).inputDecorationTheme.fillColor,
-                            borderRadius: BorderRadius.circular(10.asp),
-                          ),
-                          child: IntrinsicHeight(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 19,
-                                  child: CustomTextFormField(
-                                    controller: _phoneController,
-                                    isFilled: false,
-                                    keyboardType: TextInputType.phone,
-                                    validator: (phone) {
-                                      if (phone == null || phone.isEmpty) {
-                                        return 'رقم الجوال مطلوب';
-                                      }
-                                      return null;
-                                    },
-                                    hintText: LocaleKeys.auth_phone_no_hint.tr(),
-                                  ),
-                                ),
-                                VerticalDivider(
-                                  width: 2,
-                                  color: LightAppColors.dividerColor,
-                                  thickness: 1,
-                                  indent: 10.ah,
-                                  endIndent: 10.ah,
-                                ),
-                                10.hsb,
-                                Expanded(
-                                  flex: 8,
-                                  child: CountryDialCodePicker(
-                                    onCountryChanged: (country) => dialCode = country.dialCode,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        PhoneNumberWidget(
+                          controller: _phoneController,
+                          onDialCodeChanged: (dialCode) => this.dialCode = dialCode,
                         ),
                         14.vsb,
                         Text(
@@ -191,44 +153,6 @@ class _LoginScreenState extends State<LoginScreen> {
           },
         ),
       ),
-    );
-  }
-}
-
-class CountryDialCodePicker extends StatefulWidget {
-  const CountryDialCodePicker({
-    super.key,
-    required this.onCountryChanged,
-  });
-
-  final Function(Country) onCountryChanged;
-
-  @override
-  State<CountryDialCodePicker> createState() => _CountryDialCodePickerState();
-}
-
-class _CountryDialCodePickerState extends State<CountryDialCodePicker> {
-  Country? currentCountry = CountriesHelper().countries.firstWhere((element) => element.dialCode == '+966');
-  @override
-  Widget build(BuildContext context) {
-    return CustomDropdownButton(
-      value: currentCountry,
-      isDense: true,
-      values: CountriesHelper().countries,
-      isFilled: false,
-      icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey[400]),
-      contentPadding: EdgeInsetsDirectional.only(end: 10.aw),
-      itemView: (item) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(item.flag),
-          5.hsb,
-          Text(item.dialCode),
-        ],
-      ),
-      onChanged: (country) {
-        widget.onCountryChanged(country!);
-      },
     );
   }
 }

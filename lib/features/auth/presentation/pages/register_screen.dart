@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:warqkm/core/extensions/res_size.dart';
+import 'package:warqkm/core/shared_widgets/phone_number_widget.dart';
 import 'package:warqkm/features/auth/presentation/pages/code_activation_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
@@ -119,33 +120,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       11.34.vsb,
-                      CustomTextFormField(
+                      PhoneNumberWidget(
                         controller: _phoneController,
-                        keyboardType: TextInputType.phone,
-                        hintText: LocaleKeys.auth_phone_no_hint.tr(),
-                        suffix: IntrinsicHeight(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              VerticalDivider(
-                                width: 2,
-                                color: LightAppColors.dividerColor,
-                                thickness: 1,
-                                indent: 10.ah,
-                                endIndent: 10.ah,
-                              ),
-                              10.hsb,
-                              Image.asset('assets/images/saudi.png', width: 25.26.aw),
-                              5.6.hsb,
-                              Text(
-                                '+966',
-                                locale: const Locale('en'),
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                              const Icon(Icons.keyboard_arrow_down_outlined),
-                            ],
-                          ),
-                        ),
+                        onDialCodeChanged: (dialCode) {},
                       ),
                       14.vsb,
                       Text(
