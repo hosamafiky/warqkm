@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class CountriesHelper {
@@ -12,11 +13,15 @@ class CountriesHelper {
   List<Country> get countries => _countries;
   List<Country> _countries = [];
 
-  Future<List<Country>> getCountries() async {
+  Future<List<Country>> parseCountriesInBG() async {
+    String data = await rootBundle.loadString('assets/countries.json');
+    return compute(getCountries, data);
+  }
+
+  Future<List<Country>> getCountries(String data) async {
     try {
-      String data = await rootBundle.loadString('assets/countries.json');
       final jsonData = json.decode(data);
-      _countries = List<Country>.from(jsonData.where((e) => e['dial_code'] == '+966').map((e) => Country.fromJson(e)));
+      _countries = List<Country>.from(jsonData.map((e) => Country.fromJson(e)));
     } catch (e) {
       _countries = [];
     }

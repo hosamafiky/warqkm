@@ -9,7 +9,7 @@ import 'package:warqkm/translations/codegen_loader.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Future.wait([EasyLocalization.ensureInitialized(), CountriesHelper().getCountries()]);
+  await Future.wait([EasyLocalization.ensureInitialized(), CountriesHelper().parseCountriesInBG()]);
 
   runApp(
     EasyLocalization(
