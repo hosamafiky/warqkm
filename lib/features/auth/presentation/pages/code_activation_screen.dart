@@ -7,7 +7,6 @@ import 'package:warqkm/core/extensions/res_size.dart';
 import 'package:warqkm/core/shared_widgets/custom_text_button.dart';
 import 'package:warqkm/core/shared_widgets/custom_text_form_field.dart';
 import 'package:warqkm/core/themes/light/light_colors.dart';
-import 'package:warqkm/features/auth/presentation/pages/reset_password_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
 class ActivationCodeScreen extends StatefulWidget {
@@ -178,7 +177,6 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                           if (codeDigits.reversed.join().length < 4) {
                             return;
                           }
-                          Navigator.pushNamed(context, ResetPasswordScreen.routeName);
                         },
                         child: Text(LocaleKeys.auth_enter.tr()),
                       ),
