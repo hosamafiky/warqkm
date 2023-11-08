@@ -5,6 +5,7 @@ import 'package:warqkm/core/shared_widgets/phone_number_widget.dart';
 import 'package:warqkm/core/themes/light/light_colors.dart';
 import 'package:warqkm/features/auth/presentation/pages/forget_password_screen.dart';
 import 'package:warqkm/features/auth/presentation/pages/register_screen.dart';
+import 'package:warqkm/features/layout/presentation/pages/layout_screen.dart';
 import 'package:warqkm/translations/locale_keys.g.dart';
 
 import '../../../../core/shared_widgets/custom_text_button.dart';
@@ -114,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              print('$dialCode ${_phoneController.text}');
+                              debugPrint('$dialCode-${_phoneController.text}');
                             }
                           },
                           child: Text(LocaleKeys.auth_login.tr()),
@@ -123,7 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Center(
                           child: CustomTextButton(
                             LocaleKeys.auth_as_guest.tr(),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(context, LayoutScreen.routeName);
+                            },
                           ),
                         ),
                         const Spacer(),

@@ -1,8 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:warqkm/core/extensions/res_size.dart';
 import 'package:warqkm/core/shared_widgets/phone_number_widget.dart';
 import 'package:warqkm/features/auth/presentation/pages/code_activation_screen.dart';
@@ -10,7 +11,7 @@ import 'package:warqkm/translations/locale_keys.g.dart';
 
 import '../../../../core/shared_widgets/custom_dropdown_button.dart';
 import '../../../../core/shared_widgets/custom_text_form_field.dart';
-import '../../../../core/themes/light/light_colors.dart';
+import '../../../../core/shared_widgets/image_picker_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = '/register';
@@ -34,12 +35,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   ValueNotifier<String?> schoolDegree = ValueNotifier(null);
   ValueNotifier<File?> profileImage = ValueNotifier(null);
   ValueNotifier<bool> isConfPasswordVisible = ValueNotifier(false);
-
-  Future<File?> _pickImage() async {
-    final xFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (xFile != null) return File(xFile.path);
-    return null;
-  }
 
   @override
   void dispose() {
@@ -73,34 +68,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       16.vsb,
                       Center(
-                        child: ValueListenableBuilder(
-                          valueListenable: profileImage,
-                          builder: (context, image, child) {
-                            return Stack(
-                              alignment: AlignmentDirectional.bottomStart,
-                              children: [
-                                CircleAvatar(
-                                  radius: 36.aw,
-                                  backgroundImage: image != null ? FileImage(image) : null,
-                                ),
-                                InkWell(
-                                  onTap: () async {
-                                    profileImage.value = await _pickImage();
-                                  },
-                                  child: Container(
-                                    width: 22.aw,
-                                    height: 22.aw,
-                                    padding: EdgeInsets.all(4.asp),
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: LightAppColors.primaryColor,
-                                    ),
-                                    child: Image.asset('assets/images/cam.png'),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
+                        child: ImagePickerWidget(
+                          onImageChanged: (image) {},
                         ),
                       ),
                       24.vsb,

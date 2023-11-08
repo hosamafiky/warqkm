@@ -30,6 +30,28 @@ abstract class  LocaleKeys {
   static const auth_new_password = 'auth.new_password';
   static const auth_new_pass_conf = 'auth.new_pass_conf';
   static const auth_account_activation = 'auth.account_activation';
+  static const auth_edit_profile = 'auth.edit_profile';
+  static const auth_change_pass = 'auth.change_pass';
+  static const auth_save = 'auth.save';
   static const auth = 'auth';
+  static const layout_more = 'layout.more';
+  static const layout_cart = 'layout.cart';
+  static const layout_purchases = 'layout.purchases';
+  static const layout_my_purchases = 'layout.my_purchases';
+  static const layout_home = 'layout.home';
+  static const layout = 'layout';
+  static const more_my_account = 'more.my_account';
+  static const more_wallet = 'more.wallet';
+  static const more_invoices = 'more.invoices';
+  static const more_pay_cards = 'more.pay_cards';
+  static const more_service_provider = 'more.service_provider';
+  static const more_be_provider = 'more.be_provider';
+  static const more_favorite = 'more.favorite';
+  static const more_rate_us = 'more.rate_us';
+  static const more_contact_us = 'more.contact_us';
+  static const more_complain = 'more.complain';
+  static const more_share_app = 'more.share_app';
+  static const more_settings = 'more.settings';
+  static const more = 'more';
 
 }

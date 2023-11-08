@@ -8,6 +8,7 @@ ThemeData get lightTheme => ThemeData(
       fontFamily: 'URW',
       brightness: Brightness.light,
       scaffoldBackgroundColor: LightAppColors.scaffoldBackgroundColor,
+      cardColor: LightAppColors.avatarColor,
       primaryColor: LightAppColors.primaryColor,
       appBarTheme: AppBarTheme(
         backgroundColor: LightAppColors.primaryColor,
@@ -38,6 +39,12 @@ ThemeData get lightTheme => ThemeData(
         ),
         suffixIconColor: LightAppColors.dividerColor,
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
+        backgroundColor: LightAppColors.primaryColor,
+      ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: LightAppColors.primaryColor,
@@ -66,12 +73,34 @@ ThemeData get lightTheme => ThemeData(
           fixedSize: Size(100.w, 56.ah),
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: const BorderSide(width: 2, color: LightAppColors.primaryColor),
+          foregroundColor: LightAppColors.primaryColor,
+          textStyle: TextStyle(
+            fontSize: 18.asp,
+            color: LightAppColors.primaryColor,
+            fontFamily: 'URW',
+            fontWeight: FontWeight.w600,
+          ),
+          fixedSize: Size(100.w, 56.ah),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.asp),
+          ),
+        ),
+      ),
       textTheme: TextTheme(
         // For Fields label
         bodyMedium: TextStyle(
           color: LightAppColors.textColor1,
           fontSize: 14.asp,
           fontWeight: FontWeight.w900,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 13.asp,
+          fontWeight: FontWeight.w700,
+          color: LightAppColors.nameTextColor,
         ),
         // TextFormField input style.
         titleMedium: TextStyle(

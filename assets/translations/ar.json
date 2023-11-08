@@ -28,6 +28,30 @@
     "code_hint": "الرجاء ادخال الكود المرسل اليك",
     "new_password": "كلمة المرور الجديدة",
     "new_pass_conf": "تأكيد كلمة المرور الجديدة",
-    "account_activation": "تفعيل الحساب"
+    "account_activation": "تفعيل الحساب",
+    "edit_profile": "تعديل الحساب",
+    "change_pass": "تغيير كلمة المرور",
+    "save": "حفظ"
+  },
+  "layout": {
+    "more": "المزيد",
+    "cart": "السلة",
+    "purchases": "المشتريات",
+    "my_purchases": "مشترياتي",
+    "home": "الرئيسية"
+  },
+  "more": {
+    "my_account": "حسابي",
+    "wallet": "المحفظة",
+    "invoices": "الفواتير",
+    "pay_cards": "بطاقات الدفع",
+    "service_provider": "مقدمي الخدمة المتابعيين",
+    "be_provider": "كن مقدم خدمة",
+    "favorite": "المفضلة",
+    "rate_us": "قيمنا",
+    "contact_us": "تواصل معنا",
+    "complain": "الشكاوي والمقترحات",
+    "share_app": "مشاركة المنصة",
+    "settings": "الإعدادات"
   }
 }
